@@ -2,8 +2,9 @@ package main
 
 import (
 	"container/list"
-	"drh"
 	"fmt"
+	"htl.com/src/drh"
+	"htl.com/src/etcd-demo"
 )
 
 type goods struct {
@@ -22,6 +23,9 @@ func listDemo() {
 }
 
 func main() {
+
+	etcd.EtcdDemo()
+	//channel.ExampleSendDataWithChan()
 	//currenttime, _ := time.Parse("2006-01-02 15:04:05", time.Now().Format("2006-01-02 15:04:05"))
 	//fmt.Println(currenttime)
 	//fmt.Println(time.Now().UnixNano()/1e6)
