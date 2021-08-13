@@ -1,9 +1,14 @@
 package etcd
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"go.etcd.io/etcd/client/v3"
+	"golang.org/x/net/html/atom"
+	"htl.com/pkg/mod/go.etcd.io/etcd@v3.3.25+incompatible/clientv3/concurrency"
+	"log"
+	"os"
 	"time"
 )
 
@@ -43,3 +48,71 @@ func EtcdDemo() {
 	}
 	fmt.Println(response)
 }
+
+
+
+
+func EtcdElection(){
+	cli,err:=clientv3.New(clientv3.Config{Endpoints: })
+	if err!=nil{
+		log.Fatal(err)
+	}
+
+	defer cli.Close()
+	session,err:=concurrency.NewSession(cli)
+
+	defer session.Close()
+
+	var electName="test"
+	e1:=concurrency.NewElection(session,electName)
+
+	e1.Campaign(context.TODO(),"test")
+	consolescanner:=bufio.NewScanner(os.Stdin)
+	for consolescanner.Scan(){
+		action:consolescanner.Text()
+		switch action {
+		case "elect":
+			go elect()
+		}
+	}
+
+}
+
+
+var count int
+// 选主
+func elect(e1 *concurrency.Election, electName string) {
+	log.Println("acampaigning for ID:", *nodeID)
+	// 调用Campaign方法选主,主的值为value-<主节点ID>-<count>
+	if err := e1.Campaign(context.Background(), fmt.Sprintf("value-%d-%d", *nodeID, count)); err != nil {
+		log.Println(err)
+	}
+	log.Println("campaigned for ID:", *nodeID)
+	count++
+}
+// 为主设置新值
+func proclaim(e1 *concurrency.Election, electName string) {
+	log.Println("proclaiming for ID:", *nodeID)
+	// 调用Proclaim方法设置新值,新值为value-<主节点ID>-<count>
+	if err := e1.Proclaim(context.Background(), fmt.Sprintf("value-%d-%d", *nodeID, count)); err != nil {
+		log.Println(err)
+	}
+	log.Println("proclaimed for ID:", *nodeID)
+	count++
+}
+// 重新选主，有可能另外一个节点被选为了主
+func resign(e1 *concurrency.Election, electName string) {
+	log.Println("resigning for ID:", *nodeID)
+	// 调用Resign重新选主
+	if err := e1.Resign(context.TODO()); err != nil {
+		log.Println(err)
+	}
+	log.Println("resigned for ID:", *nodeID)
+}
+
+
+
+
+//etcd 提供读写锁跟 mutex分布式锁
+
+

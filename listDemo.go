@@ -3,8 +3,6 @@ package main
 import (
 	"container/list"
 	"fmt"
-	"htl.com/src/drh"
-	"htl.com/src/etcd-demo"
 )
 
 type goods struct {
@@ -24,7 +22,7 @@ func listDemo() {
 
 func main() {
 
-	etcd.EtcdDemo()
+	//etcd.EtcdDemo()
 	//channel.ExampleSendDataWithChan()
 	//currenttime, _ := time.Parse("2006-01-02 15:04:05", time.Now().Format("2006-01-02 15:04:05"))
 	//fmt.Println(currenttime)
@@ -46,7 +44,18 @@ func main() {
 
 	//drh.HashDemo()
 
-	user := drh.User{Username: "snv", Socre: 10}
-	drh.GetFieldName("Username", &user)
-	fmt.Println(user)
+	//user := drh.User{Username: "snv", Socre: 10}
+	//drh.GetFieldName("Username", &user)
+	//fmt.Println(user)
+
+	//unwraperr.Demo()
+
+	//coba.Execute()
+
+	//ast.AstDemo()
+
+	//go:generate go run main.go
+	//go:generate go version
+	fmt.Println("http://c.biancheng.net/golang/")
+
 }
