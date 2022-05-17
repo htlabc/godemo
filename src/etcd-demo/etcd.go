@@ -88,6 +88,9 @@ func elect(e1 *concurrency.Election, electName string) {
 	log.Println("campaigned for ID:", *nodeID)
 	count++
 }
+
+//new
+
 // 为主设置新值
 func proclaim(e1 *concurrency.Election, electName string) {
 	log.Println("proclaiming for ID:", *nodeID)
