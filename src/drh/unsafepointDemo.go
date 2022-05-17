@@ -1,6 +1,7 @@
 package drh
 
 import (
+	"errors"
 	"fmt"
 	"reflect"
 	"unsafe"
@@ -69,4 +70,17 @@ func ModifyByUnsafepoint() {
 	var b interface{}
 	fmt.Println("interface size :", unsafe.Sizeof(b))
 
+}
+
+type y struct {
+	err error
+}
+
+func UnsafePointDemo() {
+	yy := &y{errors.New("test")}
+
+	//通过unasfepoint获取内部隐藏参数
+	t := (*error)(unsafe.Pointer(uintptr(unsafe.Pointer(yy)) + unsafe.Offsetof(yy.err)))
+
+	fmt.Println(*t)
 }

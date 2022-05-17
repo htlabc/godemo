@@ -28,9 +28,9 @@ func ErrGroupDemo() {
 	)
 
 	if err := g.Wait(); err != nil {
-		fmt.Println("Successfully exec all,result:%v\n", result)
+		fmt.Printf("Successfully exec all,result: %v \n", result)
 	} else {
-		fmt.Println("failed :%v\n", result)
+		fmt.Printf("failed :%v\n", result)
 	}
 
 }

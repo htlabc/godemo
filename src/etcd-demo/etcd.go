@@ -5,8 +5,6 @@ import (
 	"context"
 	"fmt"
 	"go.etcd.io/etcd/client/v3"
-	"golang.org/x/net/html/atom"
-	"htl.com/pkg/mod/go.etcd.io/etcd@v3.3.25+incompatible/clientv3/concurrency"
 	"log"
 	"os"
 	"time"

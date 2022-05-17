@@ -1,0 +1,5 @@
+package hunch
+
+func HunchDemo() {
+
+}

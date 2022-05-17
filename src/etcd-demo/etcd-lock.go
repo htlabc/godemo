@@ -4,8 +4,10 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"htl.com/pkg/mod/go.etcd.io/etcd@v3.3.25+incompatible/clientv3"
-	recipe "htl.com/pkg/mod/go.etcd.io/etcd@v3.3.25+incompatible/contrib/recipes"
+	clientv3 "go.etcd.io/etcd/client/v3"
+	recipe "htl.com/pkg/mod/github.com/coreos/etcd/contrib/recipes"
+	"math/rand"
+
 	"log"
 	"os"
 	"strings"

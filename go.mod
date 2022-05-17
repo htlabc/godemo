@@ -3,7 +3,9 @@ module htl.com
 go 1.15
 
 require (
+	github.com/go-pkgz/syncs v1.1.1
 	github.com/gogo/protobuf v1.3.2
+	github.com/marusama/cyclicbarrier v1.1.0
 	github.com/mdlayher/schedgroup v0.0.0-20200506182200-45678742bdc7
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.2.1
